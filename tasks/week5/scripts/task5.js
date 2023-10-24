@@ -3,22 +3,78 @@
 /* IF/ELSE IF */
 
 // Step 1: Declare and initialize a new variable to hold the current date
+let today = new Date();
+console.log(today);
 
 // Step 2: Declare another variable to hold the day of the week
-
+let weekday = today.getDay();
+console.log(weekday);
 // Step 3: Using the variable declared in Step 1, assign the value of the variable declared in Step 2 to the day of the week ( hint: getDay() )
-
+document.querySelector("#message2").textContent = today;
 // Step 4: Declare a variable to hold a message that will be displayed
-
+let message = "";
 // Step 5: Using an if statement, if the day of the week is a weekday (i.e. Monday - Friday), set the message variable to the string 'Hang in there!'
 
 // Step 6: Using an else statement, set the message variable to 'Woohoo!  It is the weekend!'
 
+if (0 < weekday < 6)
+{
+    message = "Hang in there!";
+    document.querySelector("#message1").textContent = message;
+}
+
+else
+{
+    message = "Woohoo! It is the weekend!";
+    document.querySelector("#message1").textContent = message;
+}
+
+
+
 /* SWITCH, CASE, BREAK */
 
 // Step 1: Declare a new variable to hold another message
-
+let anotherMessage = "";
 // Step 2: Use switch, case and break to set the message variable to the day of the week as a string (e.g. Sunday, Monday, etc.) using the day of week variable declared in Step 2 above
+
+switch(weekday)
+{
+    case 0:
+        anotherMessage = "Sunday";
+        document.querySelector("#message2").textContent = anotherMessage;
+        break;
+
+    case 1:
+        anotherMessage = "Monday";
+        document.querySelector("#message2").textContent = anotherMessage;
+        break;
+
+    case 2:
+        anotherMessage = "Tuesday";
+        document.querySelector("#message2").textContent = anotherMessage;
+        break;
+
+    case 3:
+        anotherMessage = "Wednesday";
+        document.querySelector("#message2").textContent = anotherMessage;
+        break;
+
+    case 4:
+        anotherMessage = "Thursday";
+        document.querySelector("#message2").textContent = anotherMessage;
+        break;
+
+    case 5:
+        anotherMessage = "Friday";
+        document.querySelector("#message2").textContent = anotherMessage;
+        break;
+
+    case 6:
+        anotherMessage = "Saturday";
+        document.querySelector("#message2").textContent = anotherMessage;
+        break;
+}
+
 
 /* OUTPUT */
 
@@ -28,7 +84,7 @@
 
 /* FETCH */
 // Step 1: Declare a global empty array variable to store a list of temples
-
+let temples = [];
 // Step 2: Declare a function named output that accepts a list of temples as an array argument and does the following for each temple:
 // - Creates an HTML <article> element
 // - Creates an HTML <h3> element and add the temple's templeName property to it
