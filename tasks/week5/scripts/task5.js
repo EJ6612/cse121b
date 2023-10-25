@@ -84,7 +84,6 @@ switch(weekday)
 
 /* FETCH */
 // Step 1: Declare a global empty array variable to store a list of temples
-let temples = [];
 // Step 2: Declare a function named output that accepts a list of temples as an array argument and does the following for each temple:
 // - Creates an HTML <article> element
 // - Creates an HTML <h3> element and add the temple's templeName property to it
@@ -94,10 +93,48 @@ let temples = [];
 // - Appends the <h3> element, the two <h4> elements, and the <img> element to the <article> element as children
 // - Appends the <article> element to the HTML element with an ID of temples
 
+let output = (temples) => {
+    temples.forEach((temple) => {
+        let article = document.createElement("article");
+
+        let templeName = document.createElement("h3");
+        templeName.textContent = temple.templeName;
+
+        let location = document.createElement("h4");
+        location.textContent = temple.location;
+
+        let dedicated = document.createElement("h4");
+        dedicated.textContent = temple.dedicated;
+
+        let img = document.createElement("img");
+        img.setAttribute("src", temple.imageUrl);
+        img.setAttribute("alt", temple.templeName);
+
+        article.appendChild(templeName);
+        article.appendChild(location);
+        article.appendChild(dedicated);
+        article.appendChild(img);
+
+        document.querySelector("#temples").appendChild(article);
+    });
+};
+
+
 // Step 3: Create another function called getTemples. Make it an async function.
 // Step 4: In the function, using the built-in fetch method, call this absolute URL: 'https://byui-cse.github.io/cse121b-course/week05/temples.json'. Create a variable to hold the response from your fetch. You should have the program wait on this line until it finishes.
 // Step 5: Convert your fetch response into a Javascript object ( hint: .json() ). Store this in the templeList variable you declared earlier (Step 1). Make sure the the execution of the code waits here as well until it finishes.
 // Step 6: Finally, call the output function and pass it the list of temples. Execute your getTemples function to make sure it works correctly.
+
+const getTemples = async () => {
+    const response = await fetch(
+        "https://byui-cse.github.io/cse121b-course/week05/temples.json"
+    );
+    templeList = await response.json();
+    output(templeList);
+};
+
+getTemples();
+
 
 // Step 7: Declare a function named reset that clears all of the <article> elements from the HTML element with an ID of temples
 
